@@ -4654,7 +4654,7 @@ function! fugitive#Init() abort
     let &l:path = s:sub(&path, '^\.%(,|$)', '')
   endif
   let dir = s:Dir()
-  if stridx(&tags, escape(dir, ', ')) == -1
+  if index(split(&tags, '[^\\]\zs,'), escape(dir, ', ')) == -1
     if filereadable(dir.'/tags')
       let &l:tags = escape(dir.'/tags', ', ').','.&tags
     endif
